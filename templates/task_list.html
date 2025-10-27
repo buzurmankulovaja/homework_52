@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+
+    <h1>Задачи</h1>
+
+    <p><a href="/task/create/">Создать задачу</a></p>
+
+    {% for task in tasks %}
+        <div>
+            <h2>Описание: {{ task.description }}</h2>
+            <p>Статус: {{ task.get_status_display }}</p>
+            <p>Дата выполнения: {{ task.due_date|default:"не указана" }}</p>
+            <a href="/task/?id={{ task.id }}">Подробнее...</a>
+        </div>
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Создание задачи{% endblock %}
+
+{% block content %}
+    <h1>Добавить задачу</h1>
+
+    <form method="POST" action="">
+    {% csrf_token %}
+    <p>
+        <label>Описание:</label>
+        <input type="text" name="description" required>
+    </p>
+    <p>
+        <label>Подробнее описание:</label>
+        <textarea name="detailed_description" rows="10" cols="30" required></textarea>
+    </p>
+    <p>
+        <label>Статус:</label>
+        <select name="status" required>
+            {% for status in status_choices %}
+                <option value="{{ status.0 }}">{{ status.1 }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        <label>Дата выполнения:</label>
+        <input type="date" name="due_date" required>
+    </p>
+    <button type="submit">Сохранить</button>
+    </form>
+{% endblock %}

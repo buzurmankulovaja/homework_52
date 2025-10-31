@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ task.description }}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            Статус:{{ task.status }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ task.description }}</h5>
+            <p class="card-text">{{ task.detailed_description }}</p>
+        </div>
+    </div>
+{% endblock %}

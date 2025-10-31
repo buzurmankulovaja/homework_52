@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+    <h1> Задачи </h1>
+
+    <div class="row row-cols-2 row-cols-md-4">
+        {% for task in tasks %}
+            <div class="col">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.description }}</h5>
+                    <p class="card-text">
+                        <strong>Статус:</strong> {{ task.get_status_display }}<br>
+                        <strong>Дата выполнения:</strong> {{ task.due_date|default:"Не указана" }}
+                    </p>
+                        <h5 class="card-title">{{ task.title }}</h5>
+
+                        <a href="{% url 'task_detail' task.id %}" class="btn btn-primary">Подробнее...</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

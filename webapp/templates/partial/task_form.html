@@ -1,0 +1,21 @@
+{% csrf_token %}
+    <p>
+        <label>Описание:</label>
+        <input type="text" name="description" required value="{{ task.description }}">
+    </p>
+    <p>
+        <label>Подробнее описание:</label>
+        <textarea name="detailed_description" rows="10" cols="30" required>{{ task.detailed_description }}</textarea>
+    </p>
+    <p>
+        <label>Статус:</label>
+        <select name="status" required>
+            {% for status in status_choices %}
+                <option value="{{ status.0 }}">{{ status.1 }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        <label>Дата выполнения:</label>
+        <input type="date" name="due_date" required value="task.due_date">
+    </p>

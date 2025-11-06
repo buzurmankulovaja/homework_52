@@ -24,3 +24,22 @@ def task_create_view(request):
         due_date = request.POST.get('due_date') or None
         task = Task.objects.create(description=description, detailed_description=detailed_description, status=status, due_date=due_date)
         return redirect('task_detail', pk=task.id)
+
+def task_update_view(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'task_update.html', {'task': task, 'status_choices': status_choices})
+    elif request.method == 'POST':
+        task.description = request.POST.get('description')
+        task.detailed_description = request.POST.get('detailed_description')
+        task.due_date = request.POST.get('due_date')
+        task.status = request.POST.get('status')
+        task.save()
+        return redirect('task_detail', pk=task.id)
+
+def task_delete_view(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'task_delete.html', {'task': task})
+    task.delete()
+    return redirect('task_list')
